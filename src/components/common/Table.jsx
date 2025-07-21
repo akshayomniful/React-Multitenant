@@ -10,7 +10,7 @@ const Table = ({
 }) => {
   if (!data || data.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow p-6 text-center text-gray-500">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 text-center text-gray-500 dark:text-gray-400 transition-colors duration-200">
         {emptyMessage}
       </div>
     );
@@ -18,14 +18,14 @@ const Table = ({
 
   return (
     <div className={`overflow-x-auto ${className}`}>
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 transition-colors duration-200">
+        <thead className="bg-gray-50 dark:bg-gray-700 transition-colors duration-200">
           <tr>
             {columns.map((column) => (
               <th
                 key={column.key}
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider transition-colors duration-200"
               >
                 {column.header}
               </th>
@@ -37,17 +37,21 @@ const Table = ({
             )}
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700 transition-colors duration-200">
           {data.map((row, rowIndex) => (
             <tr
               key={row.id || rowIndex}
-              className={onRowClick ? "cursor-pointer hover:bg-gray-50" : ""}
+              className={`${
+                onRowClick
+                  ? "cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+                  : ""
+              } transition-colors duration-200`}
               onClick={onRowClick ? () => onRowClick(row) : undefined}
             >
               {columns.map((column) => (
                 <td
                   key={`${row.id}-${column.key}`}
-                  className="px-6 py-4 whitespace-nowrap"
+                  className="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-200 transition-colors duration-200"
                 >
                   {column.render ? column.render(row) : row[column.key]}
                 </td>

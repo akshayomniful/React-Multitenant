@@ -13,6 +13,7 @@
     "@casl/ability": "^6.7.3",
     "@casl/react": "^5.0.0",
     "axios": "^1.10.0",
+    "framer-motion": "^12.23.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.60.0",

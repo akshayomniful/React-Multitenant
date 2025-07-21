@@ -40,7 +40,7 @@ const Sidebar = ({
 
   return (
     <div
-      className={`h-screen bg-gray-800 text-white fixed left-0 top-0 z-40 transition-all duration-300 ease-in-out ${
+      className={`h-screen bg-gray-800 dark:bg-gray-900 text-white fixed left-0 top-0 z-40 transition-all duration-300 ease-in-out ${
         isMobile
           ? isOpen
             ? "translate-x-0 w-64"
@@ -74,7 +74,7 @@ const Sidebar = ({
             )}
           </div>
           {(!isCollapsed || isMobile) && (
-            <div className="bg-gray-700 rounded p-2 text-sm">
+            <div className="bg-gray-700 dark:bg-gray-800 rounded p-2 text-sm transition-colors duration-200">
               <p className="text-gray-300">
                 Tenant: {currentUser.tenant?.name}
               </p>
@@ -95,10 +95,10 @@ const Sidebar = ({
                     to={item.path}
                     className={`flex items-center ${
                       isCollapsed && !isMobile ? "justify-center" : "space-x-3"
-                    } p-2 rounded-md transition-colors ${
+                    } p-2 rounded-md transition-colors duration-200 ${
                       isActive(item.path)
-                        ? "bg-blue-600 text-white"
-                        : "text-gray-300 hover:bg-gray-700"
+                        ? "bg-blue-600 dark:bg-blue-700 text-white"
+                        : "text-gray-300 hover:bg-gray-700 dark:hover:bg-gray-800"
                     }`}
                     onClick={() => isMobile && setIsOpen(false)}
                   >

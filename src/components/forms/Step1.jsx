@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Step1 = ({ formData, updateFormData }) => {
   const handleChange = (e) => {
@@ -6,12 +7,37 @@ const Step1 = ({ formData, updateFormData }) => {
     updateFormData({ [name]: value });
   };
 
+  // Animation variants for staggered children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3 },
+    },
+  };
+
   return (
-    <div className="space-y-4">
-      <div>
+    <motion.div
+      className="space-y-4"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div variants={itemVariants}>
         <label
           htmlFor="title"
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-200"
         >
           Title
         </label>
@@ -21,15 +47,16 @@ const Step1 = ({ formData, updateFormData }) => {
           name="title"
           value={formData.title}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200"
           required
+          placeholder="Enter title"
         />
-      </div>
+      </motion.div>
 
-      <div>
+      <motion.div variants={itemVariants}>
         <label
           htmlFor="description"
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-200"
         >
           Description
         </label>
@@ -39,14 +66,15 @@ const Step1 = ({ formData, updateFormData }) => {
           value={formData.description}
           onChange={handleChange}
           rows="3"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200"
+          placeholder="Enter description"
         ></textarea>
-      </div>
+      </motion.div>
 
-      <div>
+      <motion.div variants={itemVariants}>
         <label
           htmlFor="category"
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 transition-colors duration-200"
         >
           Category
         </label>
@@ -55,7 +83,7 @@ const Step1 = ({ formData, updateFormData }) => {
           name="category"
           value={formData.category}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-colors duration-200"
         >
           <option value="">Select a category</option>
           <option value="technology">Technology</option>
@@ -63,8 +91,8 @@ const Step1 = ({ formData, updateFormData }) => {
           <option value="health">Health</option>
           <option value="education">Education</option>
         </select>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

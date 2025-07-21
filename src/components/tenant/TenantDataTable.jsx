@@ -5,6 +5,7 @@ import { useToast } from "../../hooks/useToast";
 import Table from "../common/Table";
 import Button from "../common/Button";
 import Can from "../permissions/Can";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TenantDataTable = ({
   data,
@@ -76,13 +77,20 @@ const TenantDataTable = ({
   ];
 
   return (
-    <Table
-      columns={columns}
-      data={filteredData}
-      actions={tableActions}
-      onRowClick={onRowClick}
-      emptyMessage={`No data available for ${currentUser?.tenant?.name}`}
-    />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="transition-colors duration-200"
+    >
+      <Table
+        columns={columns}
+        data={filteredData}
+        actions={tableActions}
+        onRowClick={onRowClick}
+        emptyMessage={`No data available for ${currentUser?.tenant?.name}`}
+      />
+    </motion.div>
   );
 };
 
